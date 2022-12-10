@@ -2,8 +2,8 @@ import speech_recognition as sr
 import pyttsx3
 import pywhatkit
 from time import *
-import wikipedia
-from os import system
+from os import system, startfile
+import windowsapps
 
 name = 'alexa'
 listener = sr.Recognizer()
@@ -45,9 +45,9 @@ def run():
         order = rec.replace('busca', '')
         pywhatkit.search(order)
     elif 'abre' in rec:
-        app = rec.replace('abre', '')
-        system(app)
-        talk('abriendo'+app)
+        orden = rec.replace('abre', '')
+        name, appid = windowsapps.open_app(orden)
+        talk('abriendo'+orden)
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
