@@ -44,6 +44,10 @@ def run():
     elif 'busca' in rec:
         order = rec.replace('busca', '')
         pywhatkit.search(order)
+    elif 'abre' in rec:
+        app = rec.replace('abre', 'abriendo')
+        system(app)
+        talk(app)
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
