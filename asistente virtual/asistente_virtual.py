@@ -42,9 +42,7 @@ def run():
         talk('Son las '+hora)
     elif 'busca' in rec:
         order = rec.replace('busca', '')
-        info = pywhatkit.search(order)
-        print(info)
-        talk(info)
+        pywhatkit.search(order)
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
