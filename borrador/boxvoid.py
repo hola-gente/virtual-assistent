@@ -9,7 +9,7 @@ alpha = ("python3 alpha.py")
     
 print("Bienvenido a boxvoid")
 
-while False:
+while True:
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Habla!")
