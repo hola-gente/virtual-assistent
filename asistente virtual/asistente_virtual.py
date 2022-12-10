@@ -42,8 +42,7 @@ def run():
         talk('Son las '+hora)
     elif 'busca' in rec:
         order = rec.replace('busca', '')
-        wikipedia.set_lang('es')
-        info = wikipedia.summary(order, 1)
+        info = pywhatkit.search(order)
         print(info)
         talk(info)
     else:
