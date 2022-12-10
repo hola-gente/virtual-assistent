@@ -3,6 +3,7 @@ import pyttsx3
 import pywhatkit
 from time import *
 import wikipedia
+from os import system
 
 name = 'alexa'
 listener = sr.Recognizer()
