@@ -44,10 +44,10 @@ def run():
     elif 'busca' in rec:
         order = rec.replace('busca', '')
         pywhatkit.search(order)
-    elif 'abre' in rec:
-        orden = rec.replace('abre', '')
-        name, appid = windowsapps.open_app(orden)
-        talk('abriendo'+orden)
+    # elif 'abre' in rec:
+    #     orden = rec.replace('abre', '')
+    #     name, appid = windowsapps.open_app(orden)
+    #     talk('abriendo'+orden)
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
