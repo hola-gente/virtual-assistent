@@ -51,8 +51,7 @@ def run():
 
     # elif 'clima' in rec:
     #     clima = rec.replace('')
-    elif 'salir'in rec:
-        quit()
+
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
