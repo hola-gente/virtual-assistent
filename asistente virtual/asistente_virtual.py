@@ -5,6 +5,8 @@ from time import *
 from os import system, startfile
 import windowsapps
 
+print("Bienvenido")
+
 name = 'alexa'
 listener = sr.Recognizer()
 key = ''
