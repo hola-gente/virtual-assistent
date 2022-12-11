@@ -44,6 +44,8 @@ def run():
     elif 'busca' in rec:
         order = rec.replace('busca', '')
         pywhatkit.search(order)
+    elif 'salir' in rec:
+        quit()
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
     #     name, appid = windowsapps.open_app(orden)
