@@ -25,7 +25,7 @@ def listen():
         with sr.Microphone() as source:
             print('Escuchando...')
             voice = listener.listen(source)
-            rec = listener.recognize_google(voice, language="es")
+            rec = listener.recognize_google(voice, language="es-US")
             rec = rec.lower()
             if name in rec:
                 rec = rec.replace(name, '')
@@ -38,8 +38,8 @@ def listen():
 def run():
     rec = listen()
     if 'reproduce' in rec:
-        music = rec.replace('reproduce', 'Reproduciendo')
-        talk(music)
+        music = rec.replace('reproduce', '')
+        talk('reproduciendo '+music)
         pywhatkit.playonyt(music)
     elif 'hora' in rec:
         hora = strftime('%H:%M %p')
