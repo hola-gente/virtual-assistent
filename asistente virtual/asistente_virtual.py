@@ -5,6 +5,7 @@ from time import *
 from os import system, startfile
 import windowsapps
 import webbrowser
+import pyautogui as at
 
 print("Bienvenido")
 
@@ -35,6 +36,11 @@ def listen():
         pass
     return rec
 
+def enviar_msj(contact, message):
+    webbrowser.open(f"https://web.whatsapp.com/send?phone={contact}&text={message}")
+    time.sleep(8)
+    at.press('enter')
+
 def run():
     rec = listen()
     if 'reproduce' in rec:
@@ -49,9 +55,23 @@ def run():
         pywhatkit.search(order)
     elif 'salir' in rec:
         quit()
-    elif 'noticia' in rec:
+    elif 'noticias' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
-
+    elif 'envia un mensaje' in rec:
+        talk("¿A quién quieres enviar el mensaje?")
+        contact = listen("Te escucho")
+        contact = contact.strip()
+        if contact in contacts:
+            for cont in contacts:
+                if cont == contact:
+                    contact = contacts[cont]
+                    talk("¿Qué mensaje le quieres enviar")
+                    message = listen("Te escucho")
+                    talk("Enviando mensaje...")
+                    enviar_msj(contact, message)
+        else:
+            talk("Parece que ese contacto no lo tienes agregado, usa el botón de \
+            agregar contacto!")
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
     #     name, appid = windowsapps.open_app(orden)

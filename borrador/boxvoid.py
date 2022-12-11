@@ -16,8 +16,8 @@ while True:
             audio = r.listen(source)
 
         try:
-            texto = r.recognize_google(audio)
-            print(r.recognize_google(audio))
+            texto = r.recognize_google(audio, language="es-US")
+            print(r.recognize_google(audio, language="es-US"))
         except sr.UnknownValueError:
             print("No te entiendo habla otra vez ")
 
