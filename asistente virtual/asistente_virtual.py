@@ -49,7 +49,7 @@ def run():
         pywhatkit.search(order)
     elif 'salir' in rec:
         quit()
-    elif 'noticias' in rec:
+    elif 'noticia' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
 
     # elif 'abre' in rec:
