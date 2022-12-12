@@ -35,6 +35,20 @@ def listen():
         pass
     return rec
 
+
+def enviar_mensajes(rec):
+    talk("¿Aquien quieres enviar el mensaje")
+    contact = listen("Te escucho")
+    contact = contact.strip()
+    if contact in contacts:
+        for cont in contact:
+            if cont == contact:
+                contact = contacts[cont]
+                talk("Que mensaje quieres enviar")
+                mensajes = listen("Te escucho")
+                talk("Enviando mensajes..")
+                whapp.send_message(contact, mensajes)
+
 def run():
     rec = listen()
     if 'reproduce' in rec:
