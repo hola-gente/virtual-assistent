@@ -5,6 +5,7 @@ from time import *
 from os import system, startfile
 import webbrowser
 import windowsapps
+import whatsapp as whapp
 
 print("Bienvenido")
 
@@ -36,18 +37,18 @@ def listen():
     return rec
 
 
-def enviar_mensajes(rec):
-    talk("¿Aquien quieres enviar el mensaje")
-    contact = listen("Te escucho")
-    contact = contact.strip()
-    if contact in contacts:
-        for cont in contact:
-            if cont == contact:
-                contact = contacts[cont]
-                talk("Que mensaje quieres enviar")
-                mensajes = listen("Te escucho")
-                talk("Enviando mensajes..")
-                whapp.send_message(contact, mensajes)
+# def enviar_mensajes(rec):
+#     talk("¿Aquien quieres enviar el mensaje")
+#     contact = listen("Te escucho")
+#     contact = contact.strip()
+#     if contact in contacts:
+#         for cont in contact:
+#             if cont == contact:
+#                 contact = contacts[cont]
+#                 talk("Que mensaje quieres enviar")
+#                 mensajes = listen("Te escucho")
+#                 talk("Enviando mensajes..")
+#                 whapp.send_message(contact, mensajes)
 
 def run():
     rec = listen()
@@ -65,7 +66,7 @@ def run():
         quit()
     elif 'noticias' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
-    elif 'mensajes' in rec:
+    elif 'envia un mensaje' in rec:
         pass
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
