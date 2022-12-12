@@ -35,24 +35,6 @@ def listen():
         pass
     return rec
 
-def enviar_mensajes(rec):
-    talk("¿Aquien quieres enviar el mensaje")
-    contact = listen("Te escucho")
-    contact = contact.strip()
-    if contact in contacts:
-        for cont in contact:
-            if cont == contact:
-                contact = contacts[cont]
-                talk("Que mensaje quieres enviar")
-                mensajes = listen("Te escucho")
-                talk("Enviando mensajes..")
-                whapp.send_message(contact, mensajes)
-
-    else:
-        talk("Parece que no lo tienes agregado")
-
-
-
 def run():
     rec = listen()
     if 'reproduce' in rec:
@@ -69,7 +51,8 @@ def run():
         quit()
     elif 'noticias' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
-
+    elif 'mensajes' in rec:
+        pass
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
     #     name, appid = windowsapps.open_app(orden)
@@ -77,7 +60,6 @@ def run():
 
     # elif 'clima' in rec:
     #     clima = rec.replace('')
-
     else:
         talk('Vuelve a intentarlo, no reconozco: '+rec)
 
