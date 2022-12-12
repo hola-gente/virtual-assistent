@@ -35,6 +35,9 @@ def listen():
         pass
     return rec
 
+def enviar_mensajes(rec):
+    talk("")
+
 def run():
     rec = listen()
     if 'reproduce' in rec:
@@ -51,8 +54,7 @@ def run():
         quit()
     elif 'noticias' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
-    elif 'mensajes' in rec:
-        
+
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
     #     name, appid = windowsapps.open_app(orden)
