@@ -51,6 +51,8 @@ def run():
         quit()
     elif 'noticias' in rec:
         webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
+    elif 'mensajes' in rec:
+        
     # elif 'abre' in rec:
     #     orden = rec.replace('abre', '')
     #     name, appid = windowsapps.open_app(orden)
