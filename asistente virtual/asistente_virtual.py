@@ -3,7 +3,6 @@ import pyttsx3
 import pywhatkit
 from time import *
 from os import system, startfile
-import windowsapps
 import webbrowser
 
 print("Bienvenido")
