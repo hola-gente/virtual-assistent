@@ -8,8 +8,9 @@ import windowsapps
 import pyjokes
 import AVMSpeechMath as sm
 import json
-import spoty
-import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import sys
+import pprint
 
 print("Bienvenido")
 
@@ -18,6 +19,11 @@ attemts = 0
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
+
+flag = 0
+client_id = "008598b4768a442688901a9be08ccf4d"
+client_secret = "a6a6c369f41846549f0942cc8e77f8fd"
+autor = ''
 
 with open('asistente virtual/src/keys.json') as json_file:
     keys = json.load(json_file)
@@ -96,8 +102,8 @@ def get_audio():
             if name in rec:
                 rec = rec.replace(f"{name} ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
                 status = True
-            else:
-                print(f"Vuelve a intentarlo, no reconozco: {rec}")
+            # else:
+            #     talk(f"Vuelve a intentarlo, no reconozco: {rec}")
         except:
             pass
     return {'text':rec, 'status':status}
@@ -114,13 +120,34 @@ while True:
 
     if 'reproduce' in rec:
         if 'spotify' in rec:
-            music = rec.replace('reproduce en spotify', '')
-            talk(f'Reproduciendo {music}')
-            spoty.play(keys["008598b4768a442688901a9be08ccf4d"], keys["a6a6c369f41846549f0942cc8e77f8fd"], music)
+            song = rec.replace('reproduce en spotify', '').upper()
+            if len(autor) > 0:
+
+                sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
+                result = sp.search(autor)
+
+                for i in range(0, len(result["tracks"]["items"])):
+                    name_song = result["tracks"]["items"][i]["name"].upper()
+                    if song in name_song:
+                        flag = 1
+                        webbrowser.open(result["tracks"]["items"][i]["uri"])
+                        sleep(8)
+                        for i in range(28):
+                            pyautogui.press("tab")
+                        pyautogui.press("enter")
+
+            if flag == 0:
+                song= song.replace(" ", "%20")
+                webbrowser.open(f'spotify:search:{song}')
+                sleep(8)
+                for i in range(28):
+                    pyautogui.press("tab")  
+                pyautogui.press("enter")
+            talk('reproduciendo '+song+' en spotify')
         else:
-            music = rec.replace('reproduce', '')
-            talk(f'Reproduciendo {music}')
-            pywhatkit.playonyt(music)
+            song = rec.replace('reproduce', '')
+            talk(f'Reproduciendo {song}')
+            pywhatkit.playonyt(song)
 
     elif 'hora' in rec:
         hora = strftime('%H:%M %p')
@@ -135,7 +162,7 @@ while True:
         order = rec.replace('busca', '')
         pywhatkit.search(order)
 
-    elif 'salir' in rec:
+    elif 'salir' or 'callate' in rec:
         quit()
 
     elif 'noticias' in rec:
