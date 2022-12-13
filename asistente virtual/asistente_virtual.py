@@ -1,16 +1,19 @@
 import speech_recognition as sr
 import pyttsx3
+import pyautogui
 import pywhatkit
 from time import *
 import os
 import webbrowser
-import windowsapps
 import pyjokes
 import AVMSpeechMath as sm
 import json
 from spotipy.oauth2 import SpotifyClientCredentials
 import sys
 import pprint
+from googletrans import Translator
+
+
 
 print("Bienvenido")
 
@@ -82,6 +85,7 @@ engine.setProperty('voice', voices[1].id)
 #     else:
 #         return "No entendí"
 
+#definicion de func
 def talk(text):
     engine.say(text)
     engine.runAndWait()
@@ -89,6 +93,11 @@ def talk(text):
 def get_audio():
     r = sr.Recognizer()
     status = False
+
+def translator():
+    Traductor = Translator()
+    Traduccion = Traductor.translate(get_audio, dest='en')
+    talk(Traduccion)
 
     with sr.Microphone() as source:
         print(f"{green_color}({attemts}) Escuchando...{normal_color}")
@@ -107,6 +116,8 @@ def get_audio():
         except:
             pass
     return {'text':rec, 'status':status}
+
+
 
 while True:
     rec_json = get_audio()
@@ -174,6 +185,7 @@ while True:
 
     elif 'cuanto es' in rec:
         talk(sm.getResult(rec))
+
 
     # elif 'envia un mensaje' in rec:
     #     pass
