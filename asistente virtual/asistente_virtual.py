@@ -14,7 +14,6 @@ import pprint
 from googletrans import Translator
 
 
-
 print("Bienvenido")
 
 name = 'alexa'
@@ -85,7 +84,6 @@ engine.setProperty('voice', voices[1].id)
 #     else:
 #         return "No entendí"
 
-#definicion de func
 def talk(text):
     engine.say(text)
     engine.runAndWait()
@@ -93,11 +91,6 @@ def talk(text):
 def get_audio():
     r = sr.Recognizer()
     status = False
-
-def translator():
-    Traductor = Translator()
-    Traduccion = Traductor.translate(get_audio, dest='en')
-    talk(Traduccion)
 
     with sr.Microphone() as source:
         print(f"{green_color}({attemts}) Escuchando...{normal_color}")
@@ -111,12 +104,11 @@ def translator():
             if name in rec:
                 rec = rec.replace(f"{name} ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
                 status = True
-            # else:
-            #     talk(f"Vuelve a intentarlo, no reconozco: {rec}")
+
         except:
             pass
-    return {'text':rec, 'status':status}
 
+    return {'text':rec, 'status':status}
 
 
 while True:
@@ -142,23 +134,31 @@ while True:
                     if song in name_song:
                         flag = 1
                         webbrowser.open(result["tracks"]["items"][i]["uri"])
-                        sleep(8)
-                        for i in range(28):
-                            pyautogui.press("tab")
+
+                        sleep(5)
+
                         pyautogui.press("enter")
 
             if flag == 0:
-                song= song.replace(" ", "%20")
+                song = song.replace(" ", "%20")
                 webbrowser.open(f'spotify:search:{song}')
-                sleep(8)
-                for i in range(28):
+
+                sleep(5)
+
+                for i in range(4):
                     pyautogui.press("tab")  
                 pyautogui.press("enter")
-            talk('reproduciendo '+song+' en spotify')
+
         else:
             song = rec.replace('reproduce', '')
             talk(f'Reproduciendo {song}')
             pywhatkit.playonyt(song)
+
+    # elif 'traduce' in rec:
+    #     entrada = rec.replace('traduce', '')
+    #     Traductor = Translator()
+    #     traduccion = Traductor.translate(entrada)
+    #     talk('{entrada} significa {traduccion} en español')
 
     elif 'hora' in rec:
         hora = strftime('%H:%M %p')
@@ -185,7 +185,6 @@ while True:
 
     elif 'cuanto es' in rec:
         talk(sm.getResult(rec))
-
 
     # elif 'envia un mensaje' in rec:
     #     pass

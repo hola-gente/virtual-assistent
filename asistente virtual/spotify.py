@@ -20,7 +20,7 @@ if len(autor) > 0:
     result = sp.search(autor)
 
     for i in range(0, len(result["tracks"]["items"])):
-        name_song = result["tracks"]["items"][i]["name"].upper()
+        name_song = result["tracks"]["items"][i]["name"].upper()    
         if song in name_song:
             flag = 1
             webbrowser.open(result["tracks"]["items"][i]["uri"])
@@ -31,6 +31,6 @@ if flag == 0:
     song= song.replace(" ", "%20")
     webbrowser.open(f'spotify:search:{song}')
     sleep(5)
-    for i in range(28):
+    for i in range(4):
         pyautogui.press("tab")  
     pyautogui.press("enter")
