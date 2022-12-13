@@ -2,7 +2,7 @@ import speech_recognition as sr
 import pyttsx3
 import pywhatkit
 from time import *
-from os import system, startfile
+import os
 import webbrowser
 import windowsapps
 import pyjokes
