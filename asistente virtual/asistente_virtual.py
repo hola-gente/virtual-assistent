@@ -117,10 +117,6 @@ while True:
     rec = rec_json['text']
     status = rec_json['status']
 
-    if status:
-        if 'estas ahi' in rec:
-            talk('Por supuesto')
-
     if 'reproduce' in rec:
         if 'spotify' in rec:
             song = rec.replace('reproduce en spotify', '').upper()
