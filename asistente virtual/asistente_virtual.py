@@ -12,6 +12,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import sys
 import pprint
 from googletrans import Translator
+import pyaudio
 
 
 print("Bienvenido")
@@ -150,11 +151,11 @@ while True:
             talk(f'Reproduciendo {song}')
             pywhatkit.playonyt(song)
 
-    # elif 'traduce' in rec:
-    #     entrada = rec.replace('traduce', '')
-    #     Traductor = Translator()
-    #     traduccion = Traductor.translate(entrada)
-    #     talk('{entrada} significa {traduccion} en español')
+    elif 'traduce' in rec:
+        entrada = rec.replace('traduce', '')
+        Traductor = Translator()
+        traduccion = Traductor.translate(entrada)
+        talk('{entrada} significa {traduccion} en español')
 
     elif 'hora' in rec:
         hora = strftime('%H:%M %p')
@@ -181,6 +182,8 @@ while True:
 
     elif 'cuanto es' in rec:
         talk(sm.getResult(rec))
+
+
 
     # elif 'envia un mensaje' in rec:
     #     pass
