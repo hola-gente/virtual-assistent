@@ -13,6 +13,8 @@ import sys
 import pprint
 from googletrans import Translator
 import pyaudio
+import AVMWeather as weather
+import requests
 
 
 print("Bienvenido")
@@ -89,9 +91,13 @@ def talk(text):
     engine.say(text)
     engine.runAndWait()
 
+def traducir():
+    Translator = Translator()
+
 def get_audio():
     r = sr.Recognizer()
     status = False
+
 
     with sr.Microphone() as source:
         print(f"{green_color}({attemts}) Escuchando...{normal_color}")
@@ -187,8 +193,27 @@ while True:
         traduc = rec.replace('Traduce', '')
         talk(Translator.translate(traduc))
 
+    elif 'clima' in rec:
+        city = rec.replace('dime el clima' '')
+        url = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}".format(city)
+        res = requests.get(url)
+
+        data = res.json()
 
 
+        temp = data["main"]["temp"]
+        vel_viento = data["wind"]["speed"]
+
+        latitud = data["coord"]["lat"]
+        longitud = data["coord"]["lon"]
+
+        descripcion = data["weather"][0]["description"]
+
+        talk("Tempreratura: ", temp)
+        talk("Velocidad del viento: {} m/s".format(vel_viento))
+        talk("Latitud: {}".format(latitud))
+        talk("Longitud: {}".format(longitud))
+        talk("Descripción: {}".format(descripcion))
 
     # elif 'envia un mensaje' in rec:
     #     pass
