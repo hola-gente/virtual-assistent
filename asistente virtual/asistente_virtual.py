@@ -182,6 +182,11 @@ while True:
 
     elif 'cuanto es' in rec:
         talk(sm.getResult(rec))
+    
+    elif 'traduce' in rec:
+        traduc = rec.replace('Traduce', '')
+        talk(Translator.translate(traduc))
+
 
 
 
