@@ -15,6 +15,7 @@ from googletrans import Translator
 import pyaudio
 import AVMWeather as weather
 import requests
+import spotipy
 
 
 print("Bienvenido")
