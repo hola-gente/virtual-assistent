@@ -181,7 +181,7 @@ while True:
         quit()
 
     elif 'noticias' in rec:
-        webbrowser.open_new_tab("https://cnnespanol.cnn.com/category/noticias/")
+        webbrowser.open("https://cnnespanol.cnn.com/category/noticias/")
 
     elif 'chiste' in rec:
         chiste = pyjokes.get_joke("es")
@@ -196,7 +196,7 @@ while True:
 
     elif 'clima' in rec:
         city = rec.replace('dime el clima' '')
-        url = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}".format(city)
+        url = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={b5a129ebfc909b112b983fe23b99943f}".format(city)
         res = requests.get(url)
 
         data = res.json()
