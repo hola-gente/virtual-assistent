@@ -18,6 +18,7 @@ import requests
 import spotipy
 
 
+
 print("Bienvenido")
 
 name = 'alexa'
@@ -100,6 +101,7 @@ def get_audio():
     status = False
 
 
+
     with sr.Microphone() as source:
         print(f"{green_color}({attemts}) Escuchando...{normal_color}")
         r.adjust_for_ambient_noise(source, duration=1)
@@ -158,6 +160,15 @@ while True:
             talk(f'Reproduciendo {song}')
             pywhatkit.playonyt(song)
 
+     elif 'mensaje' in rec:
+        xinput = rec.replace('envia un mensaje', '', '')
+        contact = xinput
+        message = xinput
+        webbrowser.open(f"https://web.whatsapp.com/send?phone={contact}&text={message}")
+        time.sleep(8)
+        at.press('enter')
+    
+
     elif 'traduce' in rec:
         entrada = rec.replace('traduce', '')
         Traductor = Translator()
@@ -215,6 +226,8 @@ while True:
         talk("Latitud: {}".format(latitud))
         talk("Longitud: {}".format(longitud))
         talk("Descripción: {}".format(descripcion))
+
+
 
     # elif 'envia un mensaje' in rec:
     #     pass
