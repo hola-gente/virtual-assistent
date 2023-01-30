@@ -166,7 +166,7 @@ while True:
         message = xinput
         webbrowser.open(f"https://web.whatsapp.com/send?phone={contact}&text={message}")
         time.sleep(8)
-        at.press('enter')
+        pyautogui.press('enter')
     
 
     elif 'traduce' in rec:
