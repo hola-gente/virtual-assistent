@@ -32,9 +32,6 @@ client_id = "008598b4768a442688901a9be08ccf4d"
 client_secret = "a6a6c369f41846549f0942cc8e77f8fd"
 autor = ''
 
-with open('asistente virtual/src/keys.json') as json_file:
-    keys = json.load(json_file)
-
 green_color = "\033[1;32;40m"
 red_color = "\033[1;31;40m"
 normal_color = "\033[0;37;40m"
@@ -42,52 +39,6 @@ normal_color = "\033[0;37;40m"
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
-# day_es = [line.rstrip('\n') for line in open('asistente virtual/src/day/day_es.txt')]
-# day_en = [line.rstrip('\n') for line in open('asistente virtual/src/day/day_en.txt')]
-
-# def iterateDays(now):
-#     for i in range(len(day_en)):
-#         if day_en[i] in now:
-#             now = now.replace(day_en[i], day_es[i])
-#     return now
-
-# def getDay():
-#     now = date.today().strftime("%A, %d de %B del %Y").lower()
-#     return iterateDays(now)
-
-# def getDaysAgo(rec):
-#     value =""
-#     if 'ayer' in rec:
-#         days = 1
-#         value = 'ayer'
-#     elif 'antier' in rec:
-#         days = 2
-#         value = 'antier'
-#     else:
-#         rec = rec.replace(",","")
-#         rec = rec.split()
-#         days = 0
-
-#         for i in range(len(rec)):
-#             try:
-#                 days = float(rec[i])
-#                 break
-#             except:
-#                 pass
-    
-#     if days != 0:
-#         try:
-#             now = date.today() - timedelta(days=days)
-#             now = now.strftime("%A, %d de %B del %Y").lower()
-
-#             if value != "":
-#                 return f"{value} fue {iterateDays(now)}"
-#             else:
-#                 return f"Hace {days} días fue {iterateDays(now)}"
-#         except:
-#             return "Aún no existíamos"
-#     else:
-#         return "No entendí"
 
 def talk(text):
     engine.say(text)
